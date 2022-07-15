@@ -19,9 +19,11 @@ Parser and logger for a SmartMicro *UMRR-0A0703-220701-050704* in RS485 mode.
  To build from source you need to have previously compiled as a **static library** (and installed):
   - wxWidgets
   - wxMathPlot
-  - the manifest.o, which is included prebuild for ease of use (can be omitted if you don't care about high-DPI resolution)
+  - the manifest.o, which is included prebuilt for ease of use (can be omitted if you don't care about high-DPI resolution)
 
 Then, in the root directory run:
 
-    cmake . -G "MSYS Generators"
+    cmake . -G "MSYS Makefiles"
     make
+
+### notes about RS485 
