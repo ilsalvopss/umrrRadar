@@ -26,4 +26,10 @@ Then, in the root directory run:
     cmake . -G "MSYS Makefiles"
     make
 
-### notes about RS485 
+### notes about RS485 adapter
+ FT232R adapters' EEPROM can be programmed through the FT_PROG utility ([ftdi download](https://ftdichip.com/utilities/#ft_prog)).
+
+ This repository contains backup patched and unpatched files in the FT232R directory. 
+ 
+ To write them to the device:
+   - install FT_PROG and run it
