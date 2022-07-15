@@ -50,7 +50,8 @@ enum modularFlags{
     TIME = 1 << 0,
     AVG = 1 << 1,
     SEM = 1 << 2,
-    DEV = 1 << 3
+    DEV = 1 << 3,
+    RAW = 1 << 4
 };
 
 const std::unordered_map<std::string, std::function<std::unique_ptr<avgAccumulator>()>> avgAccumulators = {

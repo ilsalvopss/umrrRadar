@@ -52,8 +52,8 @@ void filesystemLogManager::task() {
     while(isLogging){
         std::unique_lock<std::mutex> _l(worker_lock);
         std::deque<timedMsg> local;
-        std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
-        auto wall_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+        const std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+        const auto wall_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() + avg_period/2);
         std::unique_ptr<avgAccumulator> acc = accumulator();
 
         {
