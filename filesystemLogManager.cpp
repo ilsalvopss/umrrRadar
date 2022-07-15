@@ -62,25 +62,34 @@ void filesystemLogManager::task() {
         }
 
 
-        for(auto m: local)
-            if(start - m.t < avg_period)
-                acc->newValue(m.m.altitude);
-
-        {
+        if(logModularFlags & RAW){
             std::unique_lock<std::mutex> _f(fs_lock);
-            if(logModularFlags & TIME)
-                out_stream << std::put_time(std::localtime(&wall_time), "%Y-%m-%d %H:%M:%S") << "\t";
 
-            if(logModularFlags & AVG)
-                out_stream << std::fixed << std::setprecision(6) << acc->avg() << "\t";
+            for (auto m: local)
+                if (start - m.t < avg_period)
+                    out_stream << std::fixed << std::setprecision(6) << m.m.altitude << std::endl;
 
-            if(logModularFlags & DEV)
-                out_stream << std::fixed << std::setprecision(6) << acc->sd() << "\t";
+        } else {
+            for (auto m: local)
+                if (start - m.t < avg_period)
+                    acc->newValue(m.m.altitude);
 
-            if(logModularFlags & SEM)
-                out_stream << std::fixed << std::setprecision(6) << acc->mr() << "\t";
+            {
+                std::unique_lock<std::mutex> _f(fs_lock);
+                if (logModularFlags & TIME)
+                    out_stream << std::put_time(std::localtime(&wall_time), "%Y-%m-%d %H:%M:%S") << "\t";
 
-            out_stream << std::endl;
+                if (logModularFlags & AVG)
+                    out_stream << std::fixed << std::setprecision(6) << acc->avg() << "\t";
+
+                if (logModularFlags & DEV)
+                    out_stream << std::fixed << std::setprecision(6) << acc->sd() << "\t";
+
+                if (logModularFlags & SEM)
+                    out_stream << std::fixed << std::setprecision(6) << acc->mr() << "\t";
+
+                out_stream << std::endl;
+            }
         }
 
         while(std::chrono::high_resolution_clock::now() - start < avg_period){
