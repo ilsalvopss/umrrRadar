@@ -22,9 +22,10 @@ logPanel::logPanel(wxWindow *parent, persistenceManager& persistence) : wxPanel(
     avg_sizer->Add(new wxRadioBox(this, ID_Log_Avg, wxEmptyString, wxDefaultPosition, wxDefaultSize, avgChoices, 1 , wxRA_SPECIFY_ROWS), 1, wxEXPAND);
 
     auto* modular_sizer = new wxBoxSizer(wxHORIZONTAL);
+    modular_sizer->Add(CreateCheckBox(this, ID_Log_ModularRAW, true, "RAW"));
     modular_sizer->Add(CreateCheckBox(this, ID_Log_ModularTIME, true, "time"));
-    modular_sizer->Add(CreateCheckBox(this, ID_Log_ModularAVG, true, "average"));
-    modular_sizer->Add(CreateCheckBox(this, ID_Log_ModularDEV, true, "SD"));
+    modular_sizer->Add(CreateCheckBox(this, ID_Log_ModularAVG, true, "avg"));
+    modular_sizer->Add(CreateCheckBox(this, ID_Log_ModularDEV, true, "sd"));
     modular_sizer->Add(CreateCheckBox(this, ID_Log_ModularSEM, true, "dispersion"));
 
     auto logSettings = persistence.getLogSettings();

@@ -37,6 +37,7 @@ enum  //mainFrame enum, here for ease of use
     ID_Log_ModularAVG,
     ID_Log_ModularDEV,
     ID_Log_ModularSEM,
+    ID_Log_ModularRAW,
     ID_Log_Avg
 };
 

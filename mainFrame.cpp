@@ -318,6 +318,7 @@ void mainFrame::onStartStopLogging(wxCommandEvent &event) {
         flags = (modularFlags)(flags | (((wxCheckBox *) FindWindowById(ID_Log_ModularAVG, btn->GetGrandParent()))->GetValue() ? AVG : NONE));
         flags = (modularFlags)(flags | (((wxCheckBox *) FindWindowById(ID_Log_ModularDEV, btn->GetGrandParent()))->GetValue() ? DEV : NONE));
         flags = (modularFlags)(flags | (((wxCheckBox *) FindWindowById(ID_Log_ModularSEM, btn->GetGrandParent()))->GetValue() ? SEM : NONE));
+        flags = (modularFlags)(flags | (((wxCheckBox *) FindWindowById(ID_Log_ModularRAW, btn->GetGrandParent()))->GetValue() ? RAW : NONE));
 
         auto avg_mode = ((wxRadioBox *) FindWindowById(ID_Log_Avg, btn->GetGrandParent()))->GetStringSelection().ToStdString();
 
